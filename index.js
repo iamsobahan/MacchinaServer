@@ -62,6 +62,19 @@ async function run() {
       res.json(result);
     });
 
+    app.put("/allorders/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const option = { upsert: true };
+      const updateDoc = {
+        $set: {
+          status: "shipped",
+        },
+      };
+      const result = await orders.updateOne(query, updateDoc, option);
+      res.json(result);
+    });
+
     app.get("/orders", async (req, res) => {
       const email = req.query.email;
       const query = { email: email };
