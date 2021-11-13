@@ -36,18 +36,18 @@ async function run() {
       res.send(result);
     });
 
+    app.delete("/car/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await cars.deleteOne(query);
+      res.json(result);
+    });
+
     app.get("/car/:id", async (req, res) => {
       const carId = req.params.id;
       const query = { _id: ObjectId(carId) };
       const result = await cars.findOne(query);
       res.send(result);
-    });
-
-    app.delete("car/:id", async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: ObjectId(id) };
-      const result = await cars.deleteOne(query);
-      res.json(result);
     });
 
     app.post("/orders", async (req, res) => {
