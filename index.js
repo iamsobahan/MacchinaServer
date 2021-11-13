@@ -117,6 +117,12 @@ async function run() {
       const result = await cars.insertOne(doc);
       res.json(result);
     });
+
+    app.get("/orders", async (req, res) => {
+      const query = orders.find({});
+      const result = await query.toArray();
+      res.send(result);
+    });
   } finally {
     //   await client.close();
   }
