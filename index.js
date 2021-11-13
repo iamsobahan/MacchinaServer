@@ -24,7 +24,7 @@ async function run() {
     const orders = database.collection("ordersCollection");
     const usersCollection = database.collection("users");
 
-    app.get("/cars", async (req, res) => {
+    app.get("/car", async (req, res) => {
       const query = cars.find({});
       const result = await query.toArray();
       res.send(result);
@@ -36,7 +36,7 @@ async function run() {
       res.send(result);
     });
 
-    app.get("/cars/:id", async (req, res) => {
+    app.get("/car/:id", async (req, res) => {
       const carId = req.params.id;
       const query = { _id: ObjectId(carId) };
       const result = await cars.findOne(query);
@@ -112,7 +112,7 @@ async function run() {
       res.json({ admin: isAdmin });
     });
 
-    app.post("/cars", async (req, res) => {
+    app.post("/car", async (req, res) => {
       const doc = req.body;
       const result = await cars.insertOne(doc);
       res.json(result);
