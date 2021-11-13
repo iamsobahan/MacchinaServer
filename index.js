@@ -56,6 +56,14 @@ async function run() {
     });
 
     app.get("/orders", async (req, res) => {
+      const query = orders.find({});
+      const result = await query.toArray();
+
+      res.send(result);
+      res.json(result);
+    });
+
+    app.get("/orders", async (req, res) => {
       const email = req.query.email;
       const query = { email: email };
       const cursor = orders.find(query);
@@ -116,12 +124,6 @@ async function run() {
       const doc = req.body;
       const result = await cars.insertOne(doc);
       res.json(result);
-    });
-
-    app.get("/orders", async (req, res) => {
-      const query = orders.find({});
-      const result = await query.toArray();
-      res.send(result);
     });
   } finally {
     //   await client.close();
