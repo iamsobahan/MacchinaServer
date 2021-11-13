@@ -43,6 +43,13 @@ async function run() {
       res.send(result);
     });
 
+    app.delete("car/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await cars.deleteOne(query);
+      res.json(result);
+    });
+
     app.post("/orders", async (req, res) => {
       const doc = req.body;
 
