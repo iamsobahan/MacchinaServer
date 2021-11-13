@@ -55,10 +55,9 @@ async function run() {
       res.json(result);
     });
 
-    app.get("/orders", async (req, res) => {
+    app.get("/allorders", async (req, res) => {
       const query = orders.find({});
       const result = await query.toArray();
-
       res.send(result);
       res.json(result);
     });
